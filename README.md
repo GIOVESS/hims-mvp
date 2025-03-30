@@ -45,19 +45,13 @@ A comprehensive Django-based Hospital Information Management System.
    pip install -r requirements.txt
    ```
 
-4. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-   Edit `.env` with your database credentials and other settings.
-
-5. Set up the database:
+4. Set up the database:
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 
-6. Create a superuser:
+5. Create a superuser:
    ```bash
    python manage.py createsuperuser
    ```
