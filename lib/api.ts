@@ -263,7 +263,7 @@ const mockData = {
 }
 
 // Environment check for mock data usage
-const USE_MOCK_DATA = process.env.NODE_ENV === "development" || !process.env.NEXT_PUBLIC_API_URL
+const USE_MOCK_DATA = true
 
 // Create a mock API response with realistic delay
 const createMockResponse = (data: any) => {
