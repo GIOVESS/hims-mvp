@@ -26,23 +26,28 @@ export default function DashboardLayout({
       try {
         const token = localStorage.getItem("accessToken")
         const tokenExpiry = localStorage.getItem("tokenExpiry")
-
+        // Debug: log localStorage values on dashboard load
+        console.log("[Dashboard] accessToken:", token)
+        console.log("[Dashboard] tokenExpiry:", tokenExpiry)
         if (!token || !tokenExpiry || Date.now() >= Number.parseInt(tokenExpiry)) {
           router.replace("/login")
           return
         }
-
         // Verify token is still valid
-        await authAPI.getCurrentUser()
+        const user = await authAPI.getCurrentUser()
+        // Debug: log user info from getCurrentUser
+        console.log("[Dashboard] getCurrentUser result:", user)
         setIsAuthenticated(true)
       } catch (error) {
         console.error("Authentication check failed:", error)
+        // Debug: log localStorage values on error
+        console.log("[Dashboard][Error] accessToken:", localStorage.getItem("accessToken"))
+        console.log("[Dashboard][Error] tokenExpiry:", localStorage.getItem("tokenExpiry"))
         router.replace("/login")
       } finally {
         setIsLoading(false)
       }
     }
-
     checkAuth()
   }, [router])
 

@@ -26,9 +26,19 @@ export default function LoginPage() {
 
     try {
       await authAPI.login(email, password)
+      // Debug: log localStorage values after login
+      console.log("[Login] accessToken:", localStorage.getItem("accessToken"))
+      console.log("[Login] refreshToken:", localStorage.getItem("refreshToken"))
+      console.log("[Login] user:", localStorage.getItem("user"))
+      console.log("[Login] tokenExpiry:", localStorage.getItem("tokenExpiry"))
       router.push("/")
     } catch (err: any) {
       console.error("Login error:", err)
+      // Debug: log localStorage values on error
+      console.log("[Login][Error] accessToken:", localStorage.getItem("accessToken"))
+      console.log("[Login][Error] refreshToken:", localStorage.getItem("refreshToken"))
+      console.log("[Login][Error] user:", localStorage.getItem("user"))
+      console.log("[Login][Error] tokenExpiry:", localStorage.getItem("tokenExpiry"))
       setError("Login failed. Please try again.")
     } finally {
       setIsLoading(false)
